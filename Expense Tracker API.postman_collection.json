@@ -1,0 +1,277 @@
+{
+	"info": {
+		"_postman_id": "cdb5b310-7073-445c-9566-182c4e06819b",
+		"name": "Expense Tracker API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24071081"
+	},
+	"item": [
+		{
+			"name": "Login API",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMzgwOTA5LCJpYXQiOjE3NTAzODA2MDksImp0aSI6ImNkMTAxYzUyNjNkNDQ0MDc4ODI5MTE0MjU1NjE1MmQ0IiwidXNlcl9pZCI6Nn0.62Rjdi19VQSF3UTkJGOricolXK1IvuIQXl1Jwp7WbVI"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"dipen1\",\n  \"password\": \"test@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/auth/login/",
+				"description": "## Login API Endpoint\n\nThis endpoint is used to authenticate a user and obtain access and refresh tokens. It requires the user's credentials to be sent in the request body.\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `http://127.0.0.1:8000/api/auth/login/`\n    \n- **Headers**:\n    \n    - `Content-Type`: `application/json` (indicates that the request body is in JSON format)\n        \n\n#### Request Body Parameters\n\n- `username` (string): The username of the user attempting to log in.\n    \n- `password` (string): The password associated with the username.\n    \n\n**Example Request Body**:\n\n``` json\n{\n  \"username\": \"your_username\",\n  \"password\": \"your_password\"\n}\n\n ```\n\n### Response\n\n- **Status Code**: 200 OK\n    \n- **Content-Type**: application/json\n    \n- **Response Body**:\n    \n    - `refresh`: A token used to obtain new access tokens.\n        \n    - `access`: The token used to authenticate subsequent requests.\n        \n\n**Example Response**:\n\n``` json\n{\n  \"refresh\": \"your_refresh_token\",\n  \"access\": \"your_access_token\"\n}\n\n ```\n\n### Error Codes\n\nThe following error codes may be returned in case of issues during the authentication process:\n\n- **400 Bad Request**: This indicates that the request was malformed or missing required parameters.\n    \n- **401 Unauthorized**: This indicates that the provided credentials are invalid or the user does not have permission to access the resource.\n    \n- **403 Forbidden**: This indicates that the user is authenticated but does not have permission to perform the requested action.\n    \n\nEnsure that the credentials are correct and that the request is properly formatted to avoid these errors.\n\nThis endpoint is used to authenticate a user by logging them into the system. It accepts a username and password, and upon successful authentication, it returns access and refresh tokens.\n\n## HTTP Method\n\n`POST`\n\n## URL\n\n`http://127.0.0.1:8000/api/auth/login/`\n\n## Request Parameters\n\nThe request body must be sent in JSON format and should include the following parameters:\n\n- **username** (string): The username of the user attempting to log in.\n    \n- **password** (string): The password associated with the provided username.\n    \n\n### Example Request Body\n\n``` json\n{\n  \"username\": \"your_username\",\n  \"password\": \"your_password\"\n}\n\n ```\n\n## Response\n\nUpon a successful login, the server responds with a status code of `200` and a JSON object containing the following fields:\n\n- **access** (string): The access token used for authenticated requests.\n    \n- **refresh** (string): The refresh token used to obtain a new access token when the current one expires.\n    \n\n### Example Response\n\n``` json\n{\n  \"refresh\": \"your_refresh_token\",\n  \"access\": \"your_access_token\"\n}\n\n ```\n\n## Notes\n\n- Ensure that the username and password are correct to receive a successful response.\n    \n- The access and refresh tokens are essential for maintaining the user's session and should be stored securely."
+			},
+			"response": [
+				{
+					"name": "Login API",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"dipen1\",\n  \"password\": \"test@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/auth/login/"
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Create a New Expense or Income",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYwMTM2LCJpYXQiOjE3NTE2NTgzMzYsImp0aSI6IjEwZmEzM2MwZTRiMjRlZjE5ZmIxOGY1MGQzN2VhMDc5IiwidXNlcl9pZCI6Mn0.UH8ewCQVppbzt4rVfEyeWSI989pSFBZYzlLtmIq_2ks"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjM3NDM2LCJpYXQiOjE3NTE2MzU2MzYsImp0aSI6IjFmNzBlN2IwOWJlNDQ1ZGNiZTQ5ZTJmOWQwMWQzM2MyIiwidXNlcl9pZCI6Mn0.xHvMQgjLlOqSZOV3hg2txRsNxOfQS-TGthRu1FTkd20",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Test Expense\",\n  \"description\": \"Example entry\",\n  \"amount\": \"100.00\",\n  \"transaction_type\": \"debit\",\n  \"tax\": \"5.00\",\n  \"tax_type\": \"flat\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/expenses/",
+				"description": "## Add Expense\n\nThis endpoint allows users to create a new expense record. It accepts a POST request to the specified URL and requires a JSON payload containing details about the expense.\n\n### Request\n\n- **Method**: POST\n    \n- **Endpoint**: `http://127.0.0.1:8000/api/expenses/`\n    \n\n### Request Body Parameters\n\nThe request body must be in JSON format and include the following parameters:\n\n- **title** (string): A brief title for the expense.\n    \n- **description** (string): A detailed description of the expense.\n    \n- **amount** (string): The monetary amount of the expense.\n    \n- **transaction_type** (string): The type of transaction (e.g., debit or credit).\n    \n- **tax** (string): The tax amount applicable to the expense.\n    \n- **tax_type** (string): The type of tax (e.g., flat).\n    \n\n### Expected Response\n\nUpon a successful request, the server will respond with a status code of **201 Created** and a JSON object containing the following fields:\n\n- **id** (integer): The unique identifier for the created expense.\n    \n- **user** (integer): The ID of the user associated with the expense.\n    \n- **title** (string): The title of the expense as provided in the request.\n    \n- **description** (string): The description of the expense as provided in the request.\n    \n- **amount** (string): The amount of the expense as provided in the request.\n    \n- **transaction_type** (string): The type of transaction as provided in the request.\n    \n- **tax** (string): The tax amount as provided in the request.\n    \n- **tax_type** (string): The tax type as provided in the request.\n    \n- **created_at** (string): Timestamp of when the expense was created.\n    \n- **updated_at** (string): Timestamp of when the expense was last updated.\n    \n- **total** (integer): The total amount including tax.\n    \n\n### Additional Notes\n\n- Ensure that the values for the parameters are valid and formatted correctly to avoid errors during the request.\n    \n- This endpoint is designed for authenticated users; ensure proper authentication is handled before making the request.\n    \n\nThis endpoint allows users to create a new expense entry. By sending a POST request to the `/api/expenses/` endpoint, users can submit details about their expenses, which will be stored in the system.\n\n### Request Parameters\n\nThe request body must be in JSON format and should include the following parameters:\n\n- **title** (string): The title of the expense.\n    \n- **description** (string): A brief description of the expense.\n    \n- **amount** (string): The amount of the expense, represented as a string.\n    \n- **transaction_type** (string): The type of transaction, which can be either \"debit\" or \"credit\".\n    \n- **tax** (string): The tax amount applicable to the expense, represented as a string.\n    \n- **tax_type** (string): The type of tax applied, which can be \"flat\" or \"percentage\".\n    \n\n### Example Request Body\n\n``` json\n{\n  \"title\": \"Test Expense\",\n  \"description\": \"Example entry\",\n  \"amount\": \"100.00\",\n  \"transaction_type\": \"debit\",\n  \"tax\": \"5.00\",\n  \"tax_type\": \"flat\"\n}\n\n ```\n\n### Expected Response\n\nUpon a successful request, the server will respond with a status code of **201 Created** and return a JSON object containing the following fields:\n\n- **id** (integer): The unique identifier for the newly created expense.\n    \n- **user** (integer): The identifier for the user associated with the expense.\n    \n- **title** (string): The title of the expense as submitted.\n    \n- **description** (string): The description of the expense as submitted.\n    \n- **amount** (string): The amount of the expense as submitted.\n    \n- **transaction_type** (string): The type of transaction as submitted.\n    \n- **tax** (string): The tax amount as submitted.\n    \n- **tax_type** (string): The type of tax as submitted.\n    \n- **created_at** (string): Timestamp indicating when the expense was created.\n    \n- **updated_at** (string): Timestamp indicating when the expense was last updated.\n    \n- **total** (integer): The total amount including tax.\n    \n\n### Notes\n\n- Ensure that all required fields are included in the request body to avoid validation errors.\n    \n- The `id` and `user` fields in the response may not contain meaningful values upon creation, as they are typically assigned by the server."
+			},
+			"response": [
+				{
+					"name": "Create a New Expense or Income",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjM3NDM2LCJpYXQiOjE3NTE2MzU2MzYsImp0aSI6IjFmNzBlN2IwOWJlNDQ1ZGNiZTQ5ZTJmOWQwMWQzM2MyIiwidXNlcl9pZCI6Mn0.xHvMQgjLlOqSZOV3hg2txRsNxOfQS-TGthRu1FTkd20",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Test Expense\",\n  \"description\": \"Example entry\",\n  \"amount\": \"100.00\",\n  \"transaction_type\": \"debit\",\n  \"tax\": \"5.00\",\n  \"tax_type\": \"flat\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/expenses/"
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "List all expenses(for that user)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYwMTM2LCJpYXQiOjE3NTE2NTgzMzYsImp0aSI6IjEwZmEzM2MwZTRiMjRlZjE5ZmIxOGY1MGQzN2VhMDc5IiwidXNlcl9pZCI6Mn0.UH8ewCQVppbzt4rVfEyeWSI989pSFBZYzlLtmIq_2ks"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjM3NDM2LCJpYXQiOjE3NTE2MzU2MzYsImp0aSI6IjFmNzBlN2IwOWJlNDQ1ZGNiZTQ5ZTJmOWQwMWQzM2MyIiwidXNlcl9pZCI6Mn0.xHvMQgjLlOqSZOV3hg2txRsNxOfQS-TGthRu1FTkd20",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Test Expense\",\n  \"description\": \"Example entry\",\n  \"amount\": \"100.00\",\n  \"transaction_type\": \"debit\",\n  \"tax\": \"5.00\",\n  \"tax_type\": \"flat\"\n}\n"
+				},
+				"url": "http://127.0.0.1:8000/api/expenses/",
+				"description": "### Endpoint: `http://127.0.0.1:8000/api/expenses/`\n\n### Method: `GET`\n\nThis endpoint retrieves a list of expenses associated with the user. When a GET request is made to this endpoint, it returns a JSON array containing expense records. Each expense record includes various details such as the title, description, amount, transaction type, tax information, and timestamps for creation and updates.\n\n#### Request Payload\n\nThe request can include a payload with the following parameters:\n\n- **title** (string): The title of the expense.\n    \n- **description** (string): A detailed description of the expense.\n    \n- **amount** (string): The monetary amount of the expense.\n    \n- **transaction_type** (string): Indicates whether the transaction is a debit or credit.\n    \n- **tax** (string): The tax amount applicable to the expense.\n    \n- **tax_type** (string): The type of tax (e.g., flat).\n    \n\n#### Response\n\nOn a successful request, the response will have a status code of `200` and will return a JSON array of expense objects. Each object contains the following fields:\n\n- **id** (integer): Unique identifier for the expense.\n    \n- **user** (integer): Identifier for the user associated with the expense.\n    \n- **title** (string): Title of the expense.\n    \n- **description** (string): Description of the expense.\n    \n- **amount** (string): Amount of the expense.\n    \n- **transaction_type** (string): Type of transaction.\n    \n- **tax** (string): Tax amount.\n    \n- **tax_type** (string): Type of tax.\n    \n- **created_at** (string): Timestamp when the expense was created.\n    \n- **updated_at** (string): Timestamp when the expense was last updated.\n    \n- **total** (integer): Total amount including tax.\n    \n\nThis endpoint is useful for users to track their expenses efficiently.\n\nThis endpoint allows users to retrieve a list of expenses from the system. It supports the HTTP GET method, which is used to fetch data without modifying any resources.\n\n### Request Format\n\n- **Method**: GET\n    \n- **URL**: `http://127.0.0.1:8000/api/expenses/`\n    \n\n### Request Body\n\nFor a GET request, no body is required. However, the last call to this endpoint included the following payload for reference:\n\n``` json\n{\n  \"title\": \"Test Expense\",\n  \"description\": \"Example entry\",\n  \"amount\": \"100.00\",\n  \"transaction_type\": \"debit\",\n  \"tax\": \"5.00\",\n  \"tax_type\": \"flat\"\n}\n\n ```\n\n### Response Format\n\nUpon a successful request, the server responds with a JSON array containing the list of expenses. The response structure is as follows:\n\n- **Status**: 200 OK\n    \n- **Content-Type**: application/json\n    \n\n#### Response Body Structure\n\nEach expense object in the response contains the following fields:\n\n- **id**: Unique identifier for the expense (integer)\n    \n- **user**: Identifier for the user associated with the expense (integer)\n    \n- **title**: Title of the expense (string)\n    \n- **description**: Description of the expense (string)\n    \n- **amount**: Amount of the expense (string)\n    \n- **transaction_type**: Type of transaction (string, e.g., debit or credit)\n    \n- **tax**: Tax amount applied to the expense (string)\n    \n- **tax_type**: Type of tax applied (string, e.g., flat or percentage)\n    \n- **created_at**: Timestamp of when the expense was created (string)\n    \n- **updated_at**: Timestamp of when the expense was last updated (string)\n    \n- **total**: Total amount including tax (integer)\n    \n\n### Example Response\n\n``` json\n[\n  {\n    \"id\": 0,\n    \"user\": 0,\n    \"title\": \"\",\n    \"description\": \"\",\n    \"amount\": \"\",\n    \"transaction_type\": \"\",\n    \"tax\": \"\",\n    \"tax_type\": \"\",\n    \"created_at\": \"\",\n    \"updated_at\": \"\",\n    \"total\": 0\n  }\n]\n\n ```\n\nThis endpoint is essential for users to track and manage their expenses effectively."
+			},
+			"response": [
+				{
+					"name": "List all expenses(for that user)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/expenses/"
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Get expenses with ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYwMTM2LCJpYXQiOjE3NTE2NTgzMzYsImp0aSI6IjEwZmEzM2MwZTRiMjRlZjE5ZmIxOGY1MGQzN2VhMDc5IiwidXNlcl9pZCI6Mn0.UH8ewCQVppbzt4rVfEyeWSI989pSFBZYzlLtmIq_2ks"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/api/expenses/1",
+				"description": "## Retrieve Expense Details\n\nThis endpoint allows you to retrieve the details of a specific expense by its unique identifier.\n\n### Endpoint\n\n`GET http://127.0.0.1:8000/api/expenses/{id}`\n\n### Method\n\n`GET`\n\n### Parameters\n\n- **Path Parameter**\n    \n    - `id` (integer): The unique identifier of the expense you want to retrieve.\n        \n\n### Expected Response\n\nOn a successful request, the server will respond with a `200 OK` status and a JSON object containing the details of the expense. The response structure is as follows:\n\n``` json\n{\n  \"id\": 0,\n  \"user\": 0,\n  \"title\": \"\",\n  \"description\": \"\",\n  \"amount\": \"\",\n  \"transaction_type\": \"\",\n  \"tax\": \"\",\n  \"tax_type\": \"\",\n  \"created_at\": \"\",\n  \"updated_at\": \"\",\n  \"total\": 0\n}\n\n ```\n\n### Response Fields\n\n- `id` (integer): The unique identifier for the expense.\n    \n- `user` (integer): The identifier of the user associated with the expense.\n    \n- `title` (string): The title of the expense.\n    \n- `description` (string): A detailed description of the expense.\n    \n- `amount` (string): The amount of the expense.\n    \n- `transaction_type` (string): The type of transaction (e.g., income, expense).\n    \n- `tax` (string): The tax amount associated with the expense.\n    \n- `tax_type` (string): The type of tax applied.\n    \n- `created_at` (string): The timestamp when the expense was created.\n    \n- `updated_at` (string): The timestamp when the expense was last updated.\n    \n- `total` (integer): The total amount after taxes.\n    \n\nThis endpoint is useful for fetching detailed information about a specific expense, allowing users to view and manage their expense records effectively.\n\nThis endpoint retrieves the details of a specific expense identified by its unique ID.\n\n#### Request\n\n- **Method**: `GET`\n    \n- **URL**: `http://127.0.0.1:8000/api/expenses/{id}`\n    \n    - Replace `{id}` with the unique identifier of the expense you wish to retrieve.\n        \n\n#### Response\n\nUpon a successful request, the server will respond with a JSON object containing the following fields:\n\n- **id**: (integer) The unique identifier for the expense.\n    \n- **user**: (integer) The ID of the user associated with the expense.\n    \n- **title**: (string) The title of the expense.\n    \n- **description**: (string) A brief description of the expense.\n    \n- **amount**: (string) The amount of the expense.\n    \n- **transaction_type**: (string) The type of transaction (e.g., income, expense).\n    \n- **tax**: (string) The tax amount associated with the expense.\n    \n- **tax_type**: (string) The type of tax applied.\n    \n- **created_at**: (string) The timestamp of when the expense was created.\n    \n- **updated_at**: (string) The timestamp of the last update to the expense.\n    \n- **total**: (integer) The total amount after applying any taxes.\n    \n\nThe response will have a `200 OK` status code indicating that the request was successful."
+			},
+			"response": []
+		},
+		{
+			"name": "Edit expenses with id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYwMTM2LCJpYXQiOjE3NTE2NTgzMzYsImp0aSI6IjEwZmEzM2MwZTRiMjRlZjE5ZmIxOGY1MGQzN2VhMDc5IiwidXNlcl9pZCI6Mn0.UH8ewCQVppbzt4rVfEyeWSI989pSFBZYzlLtmIq_2ks"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Test Expenses 2\",\n  \"description\": \"Example test\",\n  \"amount\": \"100.00\",\n  \"transaction_type\": \"debit\",\n  \"tax\": \"5.00\",\n  \"tax_type\": \"flat\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/expenses/1/",
+				"description": "## PATCH /api/expenses/{id}\n\nThis endpoint allows you to update an existing expense record identified by its unique ID. You can modify various attributes of the expense, including its title, description, amount, transaction type, tax amount, and tax type.\n\n### Request Method\n\n- **PATCH**: This method is used to apply partial modifications to an existing resource.\n    \n\n### Request Parameters\n\nThe request body must be in JSON format and include the following parameters:\n\n- **title** (string): The title of the expense.\n    \n- **description** (string): A detailed description of the expense.\n    \n- **amount** (string): The monetary amount of the expense.\n    \n- **transaction_type** (string): The type of transaction, which can be either 'debit' or 'credit'.\n    \n- **tax** (string): The tax amount applicable to the expense.\n    \n- **tax_type** (string): The type of tax applied, e.g., 'flat' or 'percentage'.\n    \n\n### Example Request Body\n\n``` json\n{\n  \"title\": \"Test Expenses 2\",\n  \"description\": \"Example test\",\n  \"amount\": \"100.00\",\n  \"transaction_type\": \"debit\",\n  \"tax\": \"5.00\",\n  \"tax_type\": \"flat\"\n}\n\n ```\n\n### Expected Response\n\nOn a successful update, the server will return a status code of **200** along with a JSON object containing the updated expense details. The response will include the following fields:\n\n- **id** (integer): The unique identifier of the expense.\n    \n- **user** (integer): The ID of the user associated with the expense.\n    \n- **title** (string): The updated title of the expense.\n    \n- **description** (string): The updated description of the expense.\n    \n- **amount** (string): The updated amount of the expense.\n    \n- **transaction_type** (string): The updated transaction type.\n    \n- **tax** (string): The updated tax amount.\n    \n- **tax_type** (string): The updated tax type.\n    \n- **created_at** (string): The timestamp when the expense was created.\n    \n- **updated_at** (string): The timestamp when the expense was last updated.\n    \n- **total** (integer): The total amount after tax, if applicable.\n    \n\n### Notes\n\n- Ensure that the expense ID in the URL corresponds to an existing expense record.\n    \n- All fields in the request body are optional; only include the fields that you want to update.\n    \n- The response will reflect the state of the expense after the update operation.\n    \n\nThis endpoint allows you to update an existing expense record identified by its unique ID. You can modify various attributes of the expense, including its title, description, amount, transaction type, tax amount, and tax type.\n\n### Request Parameters\n\nThe request body must be in JSON format and include the following parameters:\n\n- **title** (string): The title of the expense.\n    \n- **description** (string): A detailed description of the expense.\n    \n- **amount** (string): The monetary amount of the expense.\n    \n- **transaction_type** (string): The type of transaction, which can be either 'debit' or 'credit'.\n    \n- **tax** (string): The tax amount applicable to the expense.\n    \n- **tax_type** (string): The type of tax applied, e.g., 'flat' or 'percentage'.\n    \n\n### Example Request Body\n\n``` json\n{\n  \"title\": \"Test Expenses 2\",\n  \"description\": \"Example test\",\n  \"amount\": \"100.00\",\n  \"transaction_type\": \"debit\",\n  \"tax\": \"5.00\",\n  \"tax_type\": \"flat\"\n}\n\n ```\n\n### Expected Response\n\nOn a successful update, the server will return a status code of **200** along with a JSON object containing the updated expense details. The response will include the following fields:\n\n- **id** (integer): The unique identifier of the expense.\n    \n- **user** (integer): The ID of the user associated with the expense.\n    \n- **title** (string): The updated title of the expense.\n    \n- **description** (string): The updated description of the expense.\n    \n- **amount** (string): The updated amount of the expense.\n    \n- **transaction_type** (string): The updated transaction type.\n    \n- **tax** (string): The updated tax amount.\n    \n- **tax_type** (string): The updated tax type.\n    \n- **created_at** (string): The timestamp when the expense was created.\n    \n- **updated_at** (string): The timestamp when the expense was last updated.\n    \n- **total** (integer): The total amount after tax, if applicable.\n    \n\n### Notes\n\n- Ensure that the expense ID in the URL corresponds to an existing expense record.\n    \n- All fields in the request body are optional; only include the fields that you want to update.\n    \n- The response will reflect the state of the expense after the update operation."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete expenses with id for authenticated user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYwMTM2LCJpYXQiOjE3NTE2NTgzMzYsImp0aSI6IjEwZmEzM2MwZTRiMjRlZjE5ZmIxOGY1MGQzN2VhMDc5IiwidXNlcl9pZCI6Mn0.UH8ewCQVppbzt4rVfEyeWSI989pSFBZYzlLtmIq_2ks"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://127.0.0.1:8000/api/expenses/1/",
+				"description": "## Delete Expense\n\nThis endpoint allows you to delete an existing expense record identified by its unique ID. It is useful for managing expense data by removing entries that are no longer needed.\n\n### Request\n\n- **Method:** DELETE\n    \n- **Endpoint:** `http://127.0.0.1:8000/api/expenses/{id}/`\n    \n    - Replace `{id}` with the unique identifier of the expense you wish to delete.\n        \n\n### Parameters\n\n- **Path Parameter:**\n    \n    - `id` (string): The unique identifier of the expense record to be deleted.\n        \n\n### Response\n\n- **Status Code:** 204 No Content\n    \n- **Content-Type:** text/xml\n    \n\nA successful deletion will return a 204 status code indicating that the request was processed successfully and there is no content to return. This signifies that the expense record has been successfully removed from the database.\n\nThis endpoint allows you to delete an existing expense record identified by its unique ID.\n\n### Request\n\n- **Method:** DELETE\n    \n- **Endpoint:** `http://127.0.0.1:8000/api/expenses/{id}/`\n    \n    - Replace `{id}` with the unique identifier of the expense you wish to delete.\n        \n\n### Response\n\n- **Status Code:** 204 No Content\n    \n- **Content-Type:** text/xml\n    \n\nA successful deletion will return a 204 status code indicating that the request was processed successfully and there is no content to return."
+			},
+			"response": []
+		},
+		{
+			"name": "register api",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"dipen\",\n  \"email\": \"dipen@example.com\",\n  \"password\": \"password123\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/auth/register/",
+				"description": "### User Registration Endpoint\n\nThis endpoint allows new users to register by providing their username, email, and password. Upon a successful registration, the server responds with a status code of 201, indicating that the user has been created. The response will include the username and email fields, which are returned as empty strings, confirming the successful processing of the request.\n\n#### Request Parameters\n\n- **username** (string): The desired username for the new account.\n    \n- **email** (string): The email address associated with the new account.\n    \n- **password** (string): The password for the new account.\n    \n\n#### Response\n\n- **Status Code**: 201 Created\n    \n- **Content-Type**: application/json\n    \n- **Response Body**:\n    \n    - **username** (string): The username of the newly created account (returned as an empty string).\n        \n    - **email** (string): The email of the newly created account (returned as an empty string).\n        \n\nThis endpoint is essential for user onboarding and should be used whenever a new user wishes to create an account.\n\nThis endpoint allows for the registration of a new user in the system. By providing the necessary user details, a new account can be created, enabling the user to access the application's features.\n\n### Request\n\n**HTTP Method:** POST  \n**Endpoint:** `http://127.0.0.1:8000/api/auth/register/`\n\n#### Request Body\n\nThe request must include a JSON object with the following parameters:\n\n- **username** (string): The desired username for the new account.\n    \n- **email** (string): The email address associated with the new account.\n    \n- **password** (string): The password for the new account.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"username\": \"your_username\",\n  \"email\": \"your_email@example.com\",\n  \"password\": \"your_password\"\n}\n\n ```\n\n### Response\n\nUpon successful registration, the API will return a response with a status code of `201 Created`. The response will contain a JSON object with the following structure:\n\n- **username** (string): The username of the newly registered account.\n    \n- **email** (string): The email address associated with the newly registered account.\n    \n\n**Example Response:**\n\n``` json\n{\n  \"username\": \"\",\n  \"email\": \"\"\n}\n\n ```\n\n### Notes\n\n- Ensure that the username and email are unique and not already in use.\n    \n- The password should meet the application's security requirements."
+			},
+			"response": []
+		},
+		{
+			"name": "Pagination",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYzMjA0LCJpYXQiOjE3NTE2NjE0MDQsImp0aSI6IjJhZmM2MDhjMzg2MjRiNzE5MTA5YTY1MzExNDhlMWU4IiwidXNlcl9pZCI6Mn0.zTTDPeIqxwQduhpfeLn05g1mM45aX-ciSFHIDixvfqo"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/transactions/",
+				"description": "### API Endpoint: Get Transactions\n\n**Method:** `GET`  \n**Endpoint:** `http://127.0.0.1:8000/api/transactions/`\n\n#### Purpose\n\nThis endpoint retrieves a list of transactions associated with the user. It is designed to provide an overview of all transactions, including their details such as title, description, amount, and type.\n\n#### Request Parameters\n\nThis endpoint does not require any request parameters. It is a simple GET request that fetches all transactions.\n\n#### Expected Response Format\n\nUpon a successful request, the API will respond with a JSON object containing the following fields:\n\n- **count**: An integer representing the total number of transactions available.\n    \n- **next**: A URL string for the next set of results, if applicable. Returns `null` if there are no more results.\n    \n- **previous**: A URL string for the previous set of results, if applicable. Returns `null` if there are no previous results.\n    \n- **results**: An array of transaction objects, each containing:\n    \n    - **id**: The unique identifier for the transaction.\n        \n    - **user**: The identifier for the user associated with the transaction.\n        \n    - **title**: The title of the transaction.\n        \n    - **description**: A brief description of the transaction.\n        \n    - **amount**: The amount of the transaction.\n        \n    - **transaction_type**: The type of the transaction (e.g., credit, debit).\n        \n    - **tax**: The tax amount associated with the transaction.\n        \n    - **tax_type**: The type of tax applied to the transaction.\n        \n    - **created_at**: The timestamp when the transaction was created.\n        \n    - **updated_at**: The timestamp when the transaction was last updated.\n        \n    - **total**: The total amount after tax.\n        \n\n#### Example Response\n\n``` json\n{\n  \"count\": 0,\n  \"next\": null,\n  \"previous\": null,\n  \"results\": [\n    {\n      \"id\": 0,\n      \"user\": 0,\n      \"title\": \"\",\n      \"description\": \"\",\n      \"amount\": \"\",\n      \"transaction_type\": \"\",\n      \"tax\": \"\",\n      \"tax_type\": \"\",\n      \"created_at\": \"\",\n      \"updated_at\": \"\",\n      \"total\": 0\n    }\n  ]\n}\n\n ```\n\nThis response indicates that there are currently no transactions available (as shown by the count of 0).\n\n### Request Method\n\n`GET`\n\n### Endpoint\n\n`http://127.0.0.1:8000/api/transactions/`\n\n### Description\n\nThis endpoint retrieves a list of transactions associated with the user. It returns a paginated response that includes metadata about the transactions and the transactions themselves.\n\n### Request Parameters\n\nThis endpoint does not require any additional parameters in the request.\n\n### Expected Response Format\n\nThe response is returned in JSON format and includes the following fields:\n\n- **count**: The total number of transactions available.\n    \n- **next**: A URL to the next page of results, if applicable.\n    \n- **previous**: A URL to the previous page of results, if applicable.\n    \n- **results**: An array of transaction objects, each containing:\n    \n    - **id**: The unique identifier for the transaction.\n        \n    - **user**: The identifier for the user associated with the transaction.\n        \n    - **title**: The title of the transaction.\n        \n    - **description**: A brief description of the transaction.\n        \n    - **amount**: The monetary amount of the transaction.\n        \n    - **transaction_type**: The type of transaction (e.g., credit, debit).\n        \n    - **tax**: The tax amount associated with the transaction.\n        \n    - **tax_type**: The type of tax applied.\n        \n    - **created_at**: The timestamp when the transaction was created.\n        \n    - **updated_at**: The timestamp when the transaction was last updated.\n        \n    - **total**: The total amount after tax.\n        \n\n### Example Response\n\n``` json\n{\n  \"count\": 0,\n  \"next\": null,\n  \"previous\": null,\n  \"results\": [\n    {\n      \"id\": 0,\n      \"user\": 0,\n      \"title\": \"\",\n      \"description\": \"\",\n      \"amount\": \"\",\n      \"transaction_type\": \"\",\n      \"tax\": \"\",\n      \"tax_type\": \"\",\n      \"created_at\": \"\",\n      \"updated_at\": \"\",\n      \"total\": 0\n    }\n  ]\n}\n\n ```\n\nThis response structure allows clients to easily navigate through the transactions and understand the details of each transaction."
+			},
+			"response": []
+		}
+	]
+}
